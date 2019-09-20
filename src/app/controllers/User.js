@@ -1,10 +1,10 @@
 import User from '../models/User'
-import UserValidation from '../middlewares/validation/User'
 
 class UserController {
   async store (req, res) {
     try {
-      const { data: user } = await UserValidation.store(req.body)
+      const user = req.body
+
       const userExists = await User.findOne({ where: { email: user.email } })
       if (userExists) return res.status(400).json({ success: false, errors: ['User already exists.'] })
 
@@ -12,7 +12,7 @@ class UserController {
 
       return res.json({ id, name, email })
     } catch (errors) {
-      return res.status(500).json(errors)
+      return res.status(500).json({ success: false, errors })
     }
   }
 }

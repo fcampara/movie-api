@@ -4,7 +4,8 @@ class Profile extends Model {
   static init (sequelize) {
     super.init(
       {
-        name: Sequelize.STRING
+        name: Sequelize.STRING,
+        userId: Sequelize.INTEGER
       },
       {
         sequelize

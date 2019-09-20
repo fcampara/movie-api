@@ -22,7 +22,7 @@ class SessionController {
         })
       })
     } catch (err) {
-      return res.status(500).json({ success: false, errors: ['Problem in Session'] })
+      return res.status(500).json({ success: false, errors: ['Error in create session'] })
     }
   }
 }
