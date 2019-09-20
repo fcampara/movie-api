@@ -2,6 +2,17 @@ import User from '../models/User'
 import Profile from '../models/Profile'
 
 class ProfileController {
+  async index (req, res) {
+    const { userId } = req
+
+    const profiles = await Profile.findAll({
+      where: { user_id: userId },
+      attributes: ['id', 'name']
+    })
+
+    return res.json({ success: true, data: profiles })
+  }
+
   async store (req, res) {
     const { name } = req.body
     const { userId } = req
@@ -24,6 +35,18 @@ class ProfileController {
 
     const newProfile = await Profile.create({ name: name, userId })
     return res.status(200).json({ success: true, data: newProfile })
+  }
+
+  async delete (req, res) {
+    const { profileId } = req.params
+
+    const profile = await Profile.findByPk(profileId)
+
+    if (!profile) return res.status(400).json({ success: false, errors: ['Profile not found'] })
+
+    const deleted = await profile.destroy()
+
+    return res.json({ success: true, data: deleted })
   }
 }
 

@@ -14,15 +14,20 @@ routes.get('/', (req, res) => {
 })
 
 // User
-routes.post('/users', validations.User.store, UserController.store)
+const usersRoutes = '/users'
+routes.post(`${usersRoutes}`, validations.User.store, UserController.store)
 
 // Session
-routes.post('/sessions', validations.Session.store, SessionController.store)
+const sessionRoutes = '/sessions'
+routes.post(`${sessionRoutes}`, validations.Session.store, SessionController.store)
 
-// Need Auth
+// Middleware Auth
 routes.use(authMiddleware)
 
 // Profile
-routes.post('/users/profile', validations.Profile.store, ProfileController.store)
+const profileRoutes = '/users/profiles'
+routes.get(`${profileRoutes}`, ProfileController.index)
+routes.post(`${profileRoutes}`, validations.Profile.store, ProfileController.store)
+routes.delete(`${profileRoutes}/:profileId`, validations.Profile.delete, ProfileController.delete)
 
 export default routes
