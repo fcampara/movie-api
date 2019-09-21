@@ -11,7 +11,7 @@ class SessionController {
       const user = await User.findOne({ where: { email } })
 
       if (!user) return res.status(401).json({ success: false, errors: ['User not found'] })
-      if (!(await user.checkPassword(password))) return res.status(401).json({ success: false, errors: 'Password does not match' })
+      if (!(await user.checkPassword(password))) return res.status(401).json({ success: false, errors: ['Password does not match'] })
 
       const { id, name } = user
 
@@ -22,7 +22,7 @@ class SessionController {
         })
       })
     } catch (err) {
-      return res.status(500).json({ success: false, errors: ['Error in create session'] })
+      return res.status(500).json({ success: false, errors: ['Error in Log in'] })
     }
   }
 }
