@@ -4,10 +4,13 @@ class Movie extends Model {
   static init (sequelize) {
     super.init(
       {
+        movieId: Sequelize.INTEGER,
         movieName: Sequelize.STRING,
         watched: Sequelize.BOOLEAN,
         wantWatch: Sequelize.BOOLEAN,
-        scheduleTo: Sequelize.DATE
+        profileId: Sequelize.INTEGER,
+        scheduleTo: Sequelize.DATE,
+        details: Sequelize.JSONB
       },
       {
         sequelize

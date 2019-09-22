@@ -3,6 +3,7 @@ import { Router } from 'express'
 import UserController from './app/controllers/User'
 import SessionController from './app/controllers/Session'
 import ProfileController from './app/controllers/Profile'
+import MovieMyListController from './app/controllers/MovieMyList'
 
 import authMiddleware from './app/middlewares/auth'
 import validations from './app/middlewares/validations'
@@ -14,20 +15,25 @@ routes.get('/', (req, res) => {
 })
 
 // User
-const usersRoutes = '/users'
-routes.post(`${usersRoutes}`, validations.User.store, UserController.store)
+const usersRoute = '/users'
+routes.post(`${usersRoute}`, validations.User.store, UserController.store)
 
 // Session
-const sessionRoutes = '/sessions'
-routes.post(`${sessionRoutes}`, validations.Session.store, SessionController.store)
+const sessionRoute = '/sessions'
+routes.post(`${sessionRoute}`, validations.Session.store, SessionController.store)
 
 // Middleware Auth
 routes.use(authMiddleware)
 
 // Profile
-const profileRoutes = '/users/profiles'
-routes.get(`${profileRoutes}`, ProfileController.index)
-routes.post(`${profileRoutes}`, validations.Profile.store, ProfileController.store)
-routes.delete(`${profileRoutes}/:profileId`, validations.Profile.delete, ProfileController.delete)
+const profileRoute = '/users/profiles'
+routes.get(`${profileRoute}`, ProfileController.index)
+routes.post(`${profileRoute}`, validations.Profile.store, ProfileController.store)
+routes.delete(`${profileRoute}/:profileId`, validations.Profile.delete, ProfileController.delete)
+
+// Movie
+const movieRoute = '/movies/:profileId'
+routes.get(`${movieRoute}/myList`, MovieMyListController.index)
+routes.post(`${movieRoute}/myList`, MovieMyListController.store)
 
 export default routes
