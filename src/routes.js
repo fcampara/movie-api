@@ -4,6 +4,7 @@ import UserController from './app/controllers/User'
 import SessionController from './app/controllers/Session'
 import ProfileController from './app/controllers/Profile'
 import MovieMyListController from './app/controllers/MovieMyList'
+import WatchedController from './app/controllers/Watched'
 
 import authMiddleware from './app/middlewares/auth'
 import validations from './app/middlewares/validations'
@@ -36,5 +37,7 @@ const movieRoute = '/movies/:profileId'
 routes.get(`${movieRoute}/myList`, MovieMyListController.index)
 routes.post(`${movieRoute}/myList`, MovieMyListController.store)
 routes.delete(`${movieRoute}/myList/:movieId`, MovieMyListController.delete)
+
+routes.put(`${movieRoute}/watched/:movieId`, WatchedController.store)
 
 export default routes
