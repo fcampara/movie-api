@@ -7,6 +7,7 @@ class Movie extends Model {
         movieId: Sequelize.INTEGER,
         movieName: Sequelize.STRING,
         watched: Sequelize.BOOLEAN,
+        genres: Sequelize.ARRAY(Sequelize.STRING),
         wantWatch: Sequelize.BOOLEAN,
         profileId: Sequelize.INTEGER,
         scheduleTo: Sequelize.DATE,
