@@ -35,5 +35,6 @@ routes.delete(`${profileRoute}/:profileId`, validations.Profile.delete, ProfileC
 const movieRoute = '/movies/:profileId'
 routes.get(`${movieRoute}/myList`, MovieMyListController.index)
 routes.post(`${movieRoute}/myList`, MovieMyListController.store)
+routes.delete(`${movieRoute}/myList/:movieId`, MovieMyListController.delete)
 
 export default routes
