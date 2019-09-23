@@ -1,6 +1,8 @@
 import request from 'supertest'
 import app from '../../src/app.js'
 
+import User from '../../src/app/models/User'
+
 import bcrypt from 'bcryptjs'
 import factory from '../factories'
 import truncate from '../util/truncate'
@@ -15,7 +17,9 @@ describe('User', () => {
       password: '123456'
     })
 
-    const compareHash = await bcrypt.compare('123456', user.password_hash)
+    const userModel = new User()
+
+    const compareHash = await userModel.checkPassword(user.password)
 
     expect(compareHash).toBe(true)
   })
