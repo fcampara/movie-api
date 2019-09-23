@@ -24,15 +24,8 @@ describe('Session', () => {
       .expect(200)
       .send(profile)
       .then(({ body }) => {
-        const { data, success } = body
-        expect(success).toBeTruthy()
-        expect(data).toEqual({
-          id: expect.toBeTruthy(),
-          name: expect.toEqual(user.name),
-          userId: expect.toBeTruthy(),
-          updatedAt: expect.toBeTruthy(),
-          createdAt: expect.toBeTruthy()
-        })
+        const { data } = body
+        expect(Object.keys(data).sort()).toEqual(['id', 'name', 'userId', 'updatedAt', 'createdAt'].sort())
       })
   })
 })
