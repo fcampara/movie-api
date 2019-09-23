@@ -36,10 +36,12 @@ describe('Session', () => {
     const { body } = await request(app).post('/api/sessions').send({ email: user.email, password: user.password })
     await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).send(profile)
 
-    await request(app)
+    const response = await request(app)
       .post('/api/users/profiles')
       .set('Authorization', `Bearer ${body.token}`)
       .send(profile)
       .expect(400)
+
+    expect(response.text).toEqual('{"success":false,"errors":["This profile name already exists"]}')
   })
 })
