@@ -7,7 +7,7 @@
     "db:install": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres",
     "db:migrate": "npx sequelize db:migrate",
     "db:start": "docker start database",
-    "dev": "cp .env.dev .env && nodemon src/server.js",
+    "dev": "NODE_ENV=development nodemon src/server.js",
     "pretest": "NODE_ENV=test npx sequelize db:migrate",
     "test": "NODE_ENV=test jest",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all"
