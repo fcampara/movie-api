@@ -7,7 +7,7 @@
     "db:install": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres",
     "db:migrate": "npx sequelize db:migrate",
     "db:start": "docker start database",
-    "dev": "nodemon src/server.js"
+    "dev": "cp .env.dev .env && nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^1.19.2",
