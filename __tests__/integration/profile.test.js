@@ -28,4 +28,18 @@ describe('Session', () => {
         expect(Object.keys(data).sort()).toEqual(['id', 'name', 'userId', 'updatedAt', 'createdAt'].sort())
       })
   })
+
+  it('should be create same profile and get error', async () => {
+
+    const user = await factory.create('User')
+    const profile = await factory.attrs('Profile')
+    const { body } = await request(app).post('/api/sessions').send({ email: user.email, password: user.password })
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).send(profile)
+
+    await request(app)
+      .post('/api/users/profiles')
+      .set('Authorization', `Bearer ${body.token}`)
+      .send(profile)
+      .expect(400)
+  })
 })
