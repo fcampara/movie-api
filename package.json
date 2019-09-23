@@ -9,7 +9,7 @@
     "db:start": "docker start database",
     "dev": "cp .env.dev .env && nodemon src/server.js",
     "pretest": "NODE_ENV=test npx sequelize db:migrate",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test node_modules/.bin/jest profile.test.js",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all"
   },
   "keywords": [],
