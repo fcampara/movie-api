@@ -7,7 +7,8 @@
     "db:install": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres",
     "db:migrate": "npx sequelize db:migrate",
     "db:start": "docker start database",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -25,12 +26,15 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "@types/jest": "^24.0.18",
     "eslint": "^6.4.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^24.9.0",
     "sequelize-cli": "^5.5.1"
   }
 }
