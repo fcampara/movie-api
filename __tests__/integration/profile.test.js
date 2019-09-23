@@ -55,13 +55,13 @@ describe('Session', () => {
     await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(firstProfile)
 
     const secondProfile = { name: faker.name.findName() }
-    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).send(secondProfile)
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(secondProfile)
 
     const thirdProfile = { name: faker.name.findName() }
     await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(thirdProfile)
 
     const fourthProfile = { name: faker.name.findName() }
-    await request(app).post('/api/users/profiles').set(' Authorization', `Bearer ${body.token}`).expect(200).send(fourthProfile)
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(fourthProfile)
 
     const fifthProfile = { name: faker.name.findName() }
     const response = await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(400).send(fifthProfile)
@@ -69,4 +69,30 @@ describe('Session', () => {
     expect(response.text).toEqual('{"success":false,"errors":["Maximum number of profiles has been reached"]}')
   })
 
+  it('should be list profiles by user', async () => {
+    const user = await factory.create('User')
+    const { body } = await request(app).post('/api/sessions').send({ email: user.email, password: user.password })
+
+    const firstProfile = { name: faker.name.findName() }
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(firstProfile)
+
+    const secondProfile = { name: faker.name.findName() }
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(secondProfile)
+
+    const thirdProfile = { name: faker.name.findName() }
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(thirdProfile)
+
+    const fourthProfile = { name: faker.name.findName() }
+    await request(app).post('/api/users/profiles').set('Authorization', `Bearer ${body.token}`).expect(200).send(fourthProfile)
+
+    await request(app)
+      .get('/api/users/profiles')
+      .set('Authorization', `Bearer ${body.token}`)
+      .expect(200)
+      .then(({ body }) => {
+        const { success, data } = body
+        expect(success).toBeTruthy()
+        expect(data).toHaveLength(4)
+      })
+  })
 })
