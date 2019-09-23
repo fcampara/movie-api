@@ -47,7 +47,7 @@ describe('Session', () => {
     expect(response.text).toEqual('{"success":false,"errors":["This profile name already exists"]}')
   })
 
-  it ('should be create 5 profiles and block', async () => {
+  it ('should be create 5 profiles to same user and block', async () => {
     const user = await factory.create('User')
     const { body } = await request(app).post('/api/sessions').send({ email: user.email, password: user.password })
 
