@@ -7,7 +7,7 @@ module.exports = {
       'birth_day',
       {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       }
     )
   },

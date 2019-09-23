@@ -20,6 +20,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      genres: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
+      },
       watched: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

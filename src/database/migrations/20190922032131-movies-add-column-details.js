@@ -7,7 +7,7 @@ module.exports = {
       'details',
       {
         type: Sequelize.JSONB,
-        allowNull: false
+        allowNull: true
       }
     )
   },
