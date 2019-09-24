@@ -4,6 +4,9 @@ import Profile from '../models/Profile'
 class ProfileController {
   async index (req, res) {
     const { userId } = req
+    const user = await User.findByPk(userId)
+
+    if (!user) return res.status(400).json({ success: false, errors: ['User not found'] })
 
     const profiles = await Profile.findAll({
       where: { user_id: userId },

@@ -7,7 +7,10 @@
     "db:install": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres",
     "db:migrate": "npx sequelize db:migrate",
     "db:start": "docker start database",
-    "dev": "nodemon src/server.js"
+    "dev": "NODE_ENV=development nodemon src/server.js",
+    "pretest": "NODE_ENV=test npx sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^1.19.2",
@@ -25,12 +29,19 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "@types/jest": "^24.0.18",
     "eslint": "^6.4.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "sequelize-cli": "^5.5.1"
+    "factory-girl": "^5.0.4",
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.1.0",
+    "supertest": "^4.0.2"
   }
 }

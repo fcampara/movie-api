@@ -11,7 +11,7 @@ module.exports = {
       },
       profile_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
+        references: { model: 'profiles', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false
@@ -19,6 +19,9 @@ module.exports = {
       movie_id: {
         type: Sequelize.INTEGER,
         allowNull: false
+      },
+      genres: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
       watched: {
         type: Sequelize.BOOLEAN,

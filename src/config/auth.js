@@ -1,4 +1,6 @@
+import 'dotenv/config'
+
 export default {
-  secret: 'jsonwebtokensecret',
+  secret: process.env.APP_SECRET,
   expiresIn: '7d'
 }

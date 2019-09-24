@@ -7,7 +7,8 @@ module.exports = {
       'movie_name',
       {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: ''
       }
     )
   },
