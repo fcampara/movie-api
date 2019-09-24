@@ -30,7 +30,7 @@ routes.use(authMiddleware)
 const profileRoute = '/users/profiles'
 routes.get(`${profileRoute}`, ProfileController.index)
 routes.post(`${profileRoute}`, validations.Profile.store, ProfileController.store)
-routes.delete(`${profileRoute}/:profileId`, validations.Profile.delete, ProfileController.delete)
+routes.delete(`${profileRoute}/:profileId`, ProfileController.delete)
 
 // Movie
 const movieRoute = '/movies/:profileId'
