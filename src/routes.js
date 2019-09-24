@@ -12,7 +12,7 @@ import validations from './app/middlewares/validations'
 const routes = new Router()
 
 routes.get('/', (req, res) => {
-  res.json({ message: 'Is alive' })
+  res.json({ message: 'Is alive!' })
 })
 
 // User
