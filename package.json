@@ -9,7 +9,7 @@
     "db:start": "docker start database",
     "dev": "NODE_ENV=development nodemon src/server.js",
     "pretest": "NODE_ENV=test npx sequelize db:migrate",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test jest --maxWorkers=0",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/server.js"
