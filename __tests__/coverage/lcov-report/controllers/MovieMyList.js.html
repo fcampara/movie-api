@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/25</span>
+        <span class='fraction'>25/25</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">90% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/10</span>
+        <span class='fraction'>9/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">63.64% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/22</span>
+        <span class='fraction'>22/22</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -122,32 +122,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,14 +174,14 @@ class MovieMyListController {
       where: { profile_id: profileId, movie_id: movieId }
     })
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (movie) {
-      const newMovie = <span class="cstat-no" title="statement not covered" >await movie.update({ wantWatch: true })</span>
-<span class="cstat-no" title="statement not covered" >      return res.json({ success: true, data: newMovie })</span>
+    if (movie) {
+      const newMovie = await movie.update({ wantWatch: true })
+      return res.json({ success: true, data: newMovie })
     }
 &nbsp;
     const newMovie = await MovieModel.create({ ...req.body, profileId, wantWatch: true })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({ success: true, data: newMovie })</span>
+    res.json({ success: true, data: newMovie })
   }
 &nbsp;
   async delete (req, res) {
@@ -191,16 +191,16 @@ class MovieMyListController {
       where: { profile_id: profileId, movie_id: movieId }
     })
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (!movie) return res.status(400).json({ success: false, errors: ['Movie not found in list'] })
+    if (!movie) return res.status(400).json({ success: false, errors: ['Movie not found in list'] })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (movie.watched) {</span>
-      const newMovie = <span class="cstat-no" title="statement not covered" >await movie.update({ wantWatch: false })</span>
-<span class="cstat-no" title="statement not covered" >      return res.json({ success: true, data: newMovie })</span>
+    if (movie.watched) {
+      const newMovie = await movie.update({ wantWatch: false })
+      return res.json({ success: true, data: newMovie })
     }
 &nbsp;
-    const deleted = <span class="cstat-no" title="statement not covered" >await movie.destroy()</span>
+    const deleted = await movie.destroy()
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return res.json({ success: true, data: deleted })</span>
+    return res.json({ success: true, data: deleted })
   }
 }
 &nbsp;
@@ -211,7 +211,7 @@ export default new MovieMyListController()
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Sep 24 2019 00:21:04 GMT-0400 (Amazon Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Sep 24 2019 00:38:47 GMT-0400 (Amazon Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>
