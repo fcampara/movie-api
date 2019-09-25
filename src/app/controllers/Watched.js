@@ -14,6 +14,11 @@ class WatchedController {
       return res.json({ success: true, data: newMovie })
     }
 
+    if (!movie.wantWatch && !watched) {
+      const deleted = await movie.destroy()
+      return res.json({ success: true, data: deleted })
+    }
+
     const newMovie = await movie.update({ watched })
 
     return res.json({ success: true, data: newMovie })

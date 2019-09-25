@@ -35,7 +35,7 @@ routes.delete(`${profileRoute}/:profileId`, ProfileController.delete)
 // Movie
 const movieRoute = '/movies/:profileId'
 routes.get(`${movieRoute}/myList`, MovieMyListController.index)
-routes.post(`${movieRoute}/myList`, MovieMyListController.store)
+routes.post(`${movieRoute}/myList`, validations.Movie.store, MovieMyListController.store)
 routes.delete(`${movieRoute}/myList/:movieId`, MovieMyListController.delete)
 
 routes.put(`${movieRoute}/watched/:movieId`, WatchedController.store)
