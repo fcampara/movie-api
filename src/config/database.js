@@ -1,6 +1,16 @@
+
 require('../bootstrap')
 
-module.exports = {
+const database = process.env.NODE_ENV === 'production' ? {
+  use_env_variable: process.env.DATABASE_URL,
+  dialect: process.env.DB_DIALECT || 'postgres',
+  ssl: true,
+  dialectOptions: {
+    ssl: {
+      require: true
+    }
+  }
+} : {
   dialect: process.env.DB_DIALECT || 'postgres',
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
@@ -13,3 +23,5 @@ module.exports = {
     underscoredAll: true
   }
 }
+
+module.exports = database
