@@ -13,7 +13,7 @@
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all",
     "prebuild": "npx sequelize db:migrate",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "postbuild": "pm2 start server",
+    "postbuild": "pm2 start dist/server.js",
     "start": "node dist/server.js"
   },
   "keywords": [],
