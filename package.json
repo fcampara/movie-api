@@ -12,7 +12,9 @@
     "test": "NODE_ENV=test jest --maxWorkers=0",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "start": "node dist/server.js"
+    "prestart": "npx sequelize db:migrate",
+    "start": "node dist/server.js",
+    "poststart": "pm2 restart server"
   },
   "keywords": [],
   "author": "",
