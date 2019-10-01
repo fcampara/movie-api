@@ -11,10 +11,10 @@
     "pretest": "NODE_ENV=test npx sequelize db:migrate",
     "test": "NODE_ENV=test jest --maxWorkers=0",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all",
+    "prebuild": "npx sequelize db:migrate",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "prestart": "npx sequelize db:migrate",
-    "start": "node dist/server.js",
-    "poststart": "pm2 restart server"
+    "postbuild": "pm2 start server",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
