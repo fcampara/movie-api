@@ -7,3 +7,4 @@ __tests__/coverage/*
 __tests__/database.sqlite
 
 .vscode
+dist
