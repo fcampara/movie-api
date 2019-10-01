@@ -2,7 +2,7 @@
 require('../bootstrap')
 
 const database = process.env.NODE_ENV === 'production' ? {
-  use_env_variable: process.env.DATABASE_URL,
+  use_env_variable: 'DATABASE_URL',
   dialect: process.env.DB_DIALECT || 'postgres',
   ssl: true,
   dialectOptions: {
